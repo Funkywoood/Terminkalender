@@ -22,4 +22,9 @@ Dieses Projekt ist eine vollständige JavaEE-Webanwendung zur Verwaltung von Rau
 - Übersicht verfügbarer/belegter Zeiten
 - Benutzerfreundliches Web-Frontend mit JSF
 
+## 🧑‍💻 Autor
+
+- **Roli Spichtig**
+- Kontakt: [https://rsfunkyweb.azurewebsites.net/]
+
 
