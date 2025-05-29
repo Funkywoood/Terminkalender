@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Administration
+  Date: 13.12.2023
+  Time: 21:29
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Raumreservierungssystem - Reservierung erfassen</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGroup rendered="#{not reservierungenBean.registrierungAbgeschlossen}">
+            <!-- Dieser Bereich wird angezeigt, wenn die Registrierung noch nicht abgeschlossen ist -->
+            <h2>Reservierung erfassen</h2>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="datum" value="Datum:"/>
+                <h:inputText id="datum" value="#{reservierungenBean.reservierung.datum}" required="true" requiredMessage="Das Datum ist erforderlich"/>
+
+                <h:outputLabel for="von" value="Von:"/>
+                <h:inputText id="von" value="#{reservierungenBean.reservierung.von}" required="true" requiredMessage="Die Startzeit ist erforderlich"/>
+
+                <h:outputLabel for="bis" value="Bis:"/>
+                <h:inputText id="bis" value="#{reservierungenBean.reservierung.bis}" required="true" requiredMessage="Die Endzeit ist erforderlich"/>
+
+                <h:outputLabel for="raum" value="Raum:"/><h:selectOneMenu id="raum" value="#{reservierungenBean.reservierung.raumNummer}" required="true" requiredMessage="Bitte wählen Sie einen Raum aus">
+                <f:selectItem itemValue="" itemLabel="-- Bitte auswählen --" noSelectionOption="true" />
+                <f:selectItems value="#{reservierungenBean.raeume}" var="raum" itemValue="#{raum.nummer}" itemLabel="#{raum.nummer}" />
+            </h:selectOneMenu>
+
+                <h:outputLabel for="bemerkung" value="Bemerkung:"/>
+                <h:panelGroup layout="block" style="display: inline-block;">
+                    <h:inputTextarea id="bemerkung" value="#{reservierungenBean.reservierung.bemerkung}"/>
+                    <h:message for="bemerkung" style="color: dodgerblue;margin-left: 10px;"/>
+                </h:panelGroup>
+
+                <h:outputLabel for="teilnehmer" value="Teilnehmer:"/>
+                <h:panelGroup layout="block" style="display: inline-block;">
+                    <h:inputTextarea id="teilnehmer" value="#{reservierungenBean.reservierung.teilnehmer}" required="true" requiredMessage="Die Teilnehmerliste ist erforderlich"/>
+                    <h:message for="teilnehmer" style="color: dodgerblue;margin-left: 10px;"/>
+                </h:panelGroup>
+            </h:panelGrid>
+
+            <h:commandButton value="Reservierung hinzufügen" action="#{reservierungenBean.addReservierung}" />
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{reservierungenBean.registrierungAbgeschlossen}" style="margin: 20px;">
+            <!-- Dieser Bereich wird angezeigt, wenn die Registrierung abgeschlossen ist -->
+            <h2 style="margin-bottom: 10px;">Reservierung erfolgreich abgeschlossen</h2>
+            <h:outputText value="Ihr privater Schlüssel: #{reservierungenBean.tempPrivaterSchluessel}" style="display: block; margin-bottom: 5px;" />
+            <h:outputText value="Ihr öffentlicher Schlüssel: #{reservierungenBean.tempOeffentlicherSchluessel}" style="display: block; margin-bottom: 10px;" />
+        </h:panelGroup>
+
+        <h:commandButton value="Zurück zur Startseite" action="#{reservierungenBean.navigateBackToIndex}" style="margin-top: 10px;" />
+
+    </h:form>
+</h:body>
+</html>
+

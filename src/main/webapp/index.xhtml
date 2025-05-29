@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Administration
+  Date: 13.12.2023
+  Time: 20:49
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Raumreservierungssystem</title>
+</h:head>
+<h:body>
+    <h:form style="margin: 20px;">
+
+        <h:commandButton value="Reservierungen erfassen" action="#{reservierungenBean.showReservationForm}" style="margin-bottom: 10px;" />
+
+        <div style="margin-bottom: 10px;">
+            <h:outputLabel for="schluessel" value="Schlüssel:" style="display: inline-block; width: 100px;" />
+            <h:inputText id="schluessel" value="#{reservierungenBean.schluessel}" style="margin-left: 10px;" />
+        </div>
+
+        <h:commandButton value="Bestätigen" action="#{reservierungenBean.ueberpruefeSchluessel}">
+            <f:ajax execute="@form" render="@form" />
+        </h:commandButton>
+
+    </h:form>
+
+</h:body>
+</html>

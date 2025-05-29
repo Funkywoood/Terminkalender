@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Administration
+  Date: 13.12.2023
+  Time: 21:27
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+
+<h:head>
+    <title>Terminansicht</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Datum:"/>
+            <h:outputText value="#{reservierungenBean.reservierung.datum}"/>
+
+            <h:outputLabel value="Von:"/>
+            <h:outputText value="#{reservierungenBean.reservierung.von}"/>
+
+            <h:outputLabel value="Bis:"/>
+            <h:outputText value="#{reservierungenBean.reservierung.bis}"/>
+
+            <h:outputLabel value="Bemerkung:"/>
+            <h:outputText value="#{reservierungenBean.reservierung.bemerkung}"/>
+
+            <h:outputLabel value="Teilnehmer:"/>
+            <h:outputText value="#{reservierungenBean.reservierung.teilnehmer}"/>
+            <h:outputLabel value="E-Mail-Adresse des eingeladenen Teilnehmers:"/>
+            <h:inputText  required="true" requiredMessage="Die E-Mail-Adresse ist erforderlich">
+                <f:validateRegex pattern="^[A-Za-z0-9+_.-]+@(.+)$" />
+            </h:inputText>
+            <h:commandButton value="Teilnehmer einladen"
+                             onclick="alert('Der Teilnehmer wurde eingeladen.'); return true;"/>
+        </h:panelGrid>
+
+        <h:commandButton value="Zurück" action="#{reservierungenBean.navigateBackToIndex}" immediate="true"/>
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: Administration
+  Date: 13.12.2023
+  Time: 21:28
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Termin bearbeiten</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="datum" value="Datum:"/>
+            <h:inputText id="datum" value="#{reservierungenBean.reservierung.datum}"/>
+
+            <h:outputLabel for="von" value="Von:"/>
+            <h:inputText id="von" value="#{reservierungenBean.reservierung.von}"/>
+
+            <h:outputLabel for="bis" value="Bis:"/>
+            <h:inputText id="bis" value="#{reservierungenBean.reservierung.bis}"/>
+
+            <h:outputLabel for="bemerkung" value="Bemerkung:"/>
+            <h:panelGroup layout="block" style="display: inline-block;">
+                <h:inputTextarea id="bemerkung" value="#{reservierungenBean.reservierung.bemerkung}"/>
+                <h:message for="bemerkung" style="color: dodgerblue;margin-left: 10px;"/>
+            </h:panelGroup>
+
+            <h:outputLabel for="teilnehmer" value="Teilnehmer:"/>
+            <h:panelGroup layout="block" style="display: inline-block;">
+                <h:inputTextarea id="teilnehmer" value="#{reservierungenBean.reservierung.teilnehmer}" required="true" requiredMessage="Die Teilnehmerliste ist erforderlich"/>
+                <h:message for="teilnehmer" style="color: dodgerblue;margin-left: 10px;"/>
+            </h:panelGroup>
+        </h:panelGrid>
+        <h:commandButton value="Reservierung löschen" action="#{reservierungenBean.loescheReservierung(reservierungenBean.reservierung.privaterSchluessel)}"/>
+        <h:commandButton value="Änderungen speichern" action="#{reservierungenBean.aktualisiereReservierung}"/>
+        <h:commandButton value="Zurück" action="#{reservierungenBean.navigateBackToIndex}" immediate="true"/>
+    </h:form></h:body></html>
